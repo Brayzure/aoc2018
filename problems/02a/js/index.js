@@ -30,3 +30,5 @@ function calculateChecksum(inputs) {
 
     return twos * threes;
 }
+
+module.exports = calculateChecksum;

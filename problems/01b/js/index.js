@@ -1,23 +1,28 @@
 const fs = require("fs");
-
 const INPUT_LOCATION = "../input.txt";
-const STARTING_FREQUENCY = 0;
-const visitedValues = new Set();
+const input = fs.readFileSync(INPUT_LOCATION, "utf8").trim().split("\n").map(e => e.trim());
 
-const input = fs.readFileSync(INPUT_LOCATION, "utf8");
-const offsets = parseInput(input);
+const solution = solve(input);
+console.log(solution);
 
-let frequency = STARTING_FREQUENCY;
-let currentIndex = 0;
-while(!visitedValues.has(frequency)) {
-    visitedValues.add(frequency);
-    frequency += offsets[currentIndex];
-    currentIndex = (currentIndex + 1) % offsets.length;
+function solve(input) {
+    const STARTING_FREQUENCY = 0;
+    const visitedValues = new Set();
+    const offsets = parseInput(input);
+
+    let frequency = STARTING_FREQUENCY;
+    let currentIndex = 0;
+    while(!visitedValues.has(frequency)) {
+        visitedValues.add(frequency);
+        frequency += offsets[currentIndex];
+        currentIndex = (currentIndex + 1) % offsets.length;
+    }
+
+    return frequency;
 }
-console.log(frequency);
 
 function parseInput(input) {
-    const changes = input.trim().split("\n");
+    const changes = input;
     const newValues = [];
     for(const value of changes) {
         let offset = parseInt(value.slice(1));
@@ -26,3 +31,5 @@ function parseInput(input) {
     }
     return newValues;
 }
+
+module.exports = solve;

@@ -3,7 +3,8 @@ const INPUT_LOCATION = "../input.txt";
 const rawInput = fs.readFileSync(INPUT_LOCATION, "utf8");
 const input = rawInput.trim().split("\n").map(e => e.trim());
 
-solve(input);
+const solution = solve(input);
+console.log(solution);
 
 function solve(entries) {
     const guards = {};
@@ -35,7 +36,7 @@ function solve(entries) {
     }
 
     const solution = findSleepiestMinute(guards);
-    console.log(solution);
+    return solution;
 }
 
 function findSleepiestMinute(guards) {
@@ -54,3 +55,5 @@ function findSleepiestMinute(guards) {
 
     return parseInt(maxGuard) * maxMinute;
 }
+
+module.exports = solve();

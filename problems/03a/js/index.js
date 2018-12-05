@@ -1,20 +1,25 @@
 const fs = require("fs");
 const INPUT_LOCATION = "../input.txt";
 const input = fs.readFileSync(INPUT_LOCATION, "utf8");
-const claims = input.trim().split("\n").map(e => e.trim());
 
-let claimMap = [];
-for(const claim of claims) {
-    const claimObj = parseClaim(claim);
-    console.log(claimObj);
-    addClaim(claimObj);
-}
+console.log(solve(input));
 
-const overlaps = [];
-for(const row of claimMap) {
-    if(row) overlaps.push(row.filter(e => e > 1).length);
+function solve(input) {
+    const claims = input.trim().split("\n").map(e => e.trim());
+
+    let claimMap = [];
+    for(const claim of claims) {
+        const claimObj = parseClaim(claim);
+        addClaim(claimObj);
+    }
+
+    const overlaps = [];
+    for(const row of claimMap) {
+        if(row) overlaps.push(row.filter(e => e > 1).length);
+    }
+
+    return overlaps.reduce((a, b) => a + b, 0);
 }
-console.log(overlaps.reduce((a, b) => a + b, 0));
 
 function addClaim(object) {
     for(let i = object.leftOffset; i < object.leftOffset + object.width; i++) {
@@ -36,3 +41,5 @@ function parseClaim(claim) {
         height: claimParams[4]
     }
 }
+
+module.exports = solve;

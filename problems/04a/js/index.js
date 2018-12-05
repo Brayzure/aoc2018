@@ -3,7 +3,7 @@ const INPUT_LOCATION = "../input.txt";
 const rawInput = fs.readFileSync(INPUT_LOCATION, "utf8");
 const input = rawInput.trim().split("\n").map(e => e.trim());
 
-solve(input);
+const solution = solve(input);
 
 function solve(entries) {
     const guards = {};
@@ -35,7 +35,7 @@ function solve(entries) {
     }
 
     const solution = findSleepiestGuard(guards);
-    console.log(solution);
+    return solution;
 }
 
 function findSleepiestGuard(guards) {
@@ -60,3 +60,5 @@ function findSleepiestGuard(guards) {
 
     return parseInt(maxGuard) * maxIndex;
 }
+
+module.exports = solve;

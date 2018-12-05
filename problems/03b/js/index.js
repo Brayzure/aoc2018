@@ -1,14 +1,19 @@
 const fs = require("fs");
 const INPUT_LOCATION = "../input.txt";
 const input = fs.readFileSync(INPUT_LOCATION, "utf8");
-const claims = input.trim().split("\n").map(e => parseClaim(e.trim()));
 
-let claimMap = [];
-for(const claim of claims) {
-    addClaim(claim);
+console.log(solve(input));
+
+function solve(input) {
+    const claims = input.trim().split("\n").map(e => parseClaim(e.trim()));
+
+    let claimMap = [];
+    for(const claim of claims) {
+        addClaim(claim);
+    }
+
+    return findPerfectClaim(claims, claimMap);
 }
-
-console.log(findPerfectClaim(claims, claimMap).id);
 
 function findPerfectClaim(claims, claimMap) {
     for(const claim of claims) {
@@ -19,7 +24,7 @@ function findPerfectClaim(claims, claimMap) {
             }
         }
         if(!fail) {
-            return claim;
+            return claim.id;
         }
     }
 }
@@ -44,3 +49,5 @@ function parseClaim(claim) {
         height: claimParams[4]
     }
 }
+
+module.exports = solve;

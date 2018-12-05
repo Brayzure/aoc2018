@@ -1,14 +1,18 @@
 const fs = require("fs");
-
 const INPUT_LOCATION = "../input.txt";
-const STARTING_FREQUENCY = 0;
+const input = fs.readFileSync(INPUT_LOCATION, "utf8").trim().split("\n").map(e => e.trim());
 
-const input = fs.readFileSync(INPUT_LOCATION, "utf8");
-const offsets = parseInput(input);
-console.log(calculateFrequency(STARTING_FREQUENCY, offsets));
+const solution = solve(input);
+console.log(solution);
+
+function solve(input) {
+    const STARTING_FREQUENCY = 0;
+    const offsets = parseInput(input);
+    return calculateFrequency(STARTING_FREQUENCY, offsets);
+}
 
 function parseInput(input) {
-    const changes = input.trim().split("\n");
+    const changes = input;
     const newValues = [];
     for(const value of changes) {
         let offset = parseInt(value.slice(1));
@@ -21,3 +25,5 @@ function parseInput(input) {
 function calculateFrequency(start=0, changes=[]) {
     return changes.reduce((a, b) => a + b, start);
 }
+
+module.exports = solve;

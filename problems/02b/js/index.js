@@ -1,12 +1,11 @@
 const fs = require("fs");
 const INPUT_LOCATION = "../input.txt";
-const input = fs.readFileSync(INPUT_LOCATION, "utf8");
-let IDs = input.trim().split("\n");
-IDs = IDs.map(e => e.trim());
+const input = fs.readFileSync(INPUT_LOCATION, "utf8").trim().split("\n").map(e => e.trim());
 
-findNearMatch();
+console.log(solve(input));
 
-function findNearMatch() {
+function solve(input) {
+    let IDs = input;
     let found = false;
     let i, j;
     for(i = 0; i < IDs.length - 1 && !found; i++) {
@@ -16,7 +15,7 @@ function findNearMatch() {
     }
     i--;
     j--;
-    console.log(stripDifferences(IDs[i], IDs[j]));
+    return stripDifferences(IDs[i], IDs[j]);
 }
 
 function stripDifferences(str1, str2) {
@@ -34,3 +33,5 @@ function compare(str1, str2) {
     }
     return diff === 1;
 }
+
+module.exports = solve;
