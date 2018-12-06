@@ -2,49 +2,65 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
 
-int calculateFrequency(int, std::vector<int>);
-int parseInput(std::string);
+std::vector<std::string> readInput(std::string);
+int solve(std::vector<std::string>);
 
 int main() {
     std::string FILE_LOCATION = "..\\input.txt";
-    int STARTING_FREQUENCY = 0;
+    std::vector<std::string> input = readInput(FILE_LOCATION);
 
+    int solution = solve(input);
+    std::cout << solution << std::endl;
+    std::cin.get();
+
+    return 0;
+}
+
+int solve(std::vector<std::string> lines) {
+    int twos = 0;
+    int threes = 0;
+    for(int i = 0; i < lines.size(); i++) {
+        bool two = false;
+        bool three = false;
+        std::string box = lines[i];
+        int currentCount = 0;
+        char currentChar;
+        std::sort(box.begin(), box.end());
+        for(int j = 0; j < box.length() && !(two && three); j++) {
+            char boxChar = box[j];
+            if(boxChar != currentChar) {
+                currentChar = boxChar;
+                if(currentCount == 2) two = true;
+                if(currentCount == 3) three = true;
+                currentCount = 0;
+            }
+            currentCount++;
+        }
+        if(currentCount == 2) two = true;
+        if(currentCount == 3) three = true;
+        if(two) twos++;
+        if(three) threes++;
+    }
+
+    return twos * threes;
+}
+
+std::vector<std::string> readInput(std::string fileLocation) {
     std::ifstream in;
     std::string input;
-    std::vector<int> offsets;
-    int value;
+    std::vector<std::string> lines;
 
-    in.open(FILE_LOCATION);
+    in.open(fileLocation);
 
     while(std::getline(in, input)) {
         if(input != "") {
-            value = parseInput(input);
-            offsets.push_back(value);
+            lines.push_back(input);
         }
     }
 
     in.close();
 
-    std::cout << calculateFrequency(STARTING_FREQUENCY, offsets);
-    std::cin.get();
-    return 0;
-}
-
-int calculateFrequency(int start, std::vector<int> changes) {
-    int frequency = start;
-    for(int i=0; i<changes.size(); i++) {
-        frequency += changes[i];
-    }
-    return frequency;
-}
-
-int parseInput(std::string value) {
-    std::string absoluteValue = value.substr(1);
-    int modifier = 1;
-    if(value[0] == '-') {
-        modifier = -1;
-    }
-    int parsedValue = std::stoi(absoluteValue) * modifier;
-    return parsedValue;
+    return lines;
 }
