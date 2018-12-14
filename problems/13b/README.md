@@ -4,37 +4,39 @@ They can proceed like this for a while, but eventually, they're going to run out
 
 For example:
 
-/>-<\\    
+```
+/>-<\    
 |   |    
-| /<+-\\  
+| /<+-\  
 | | | v  
-\\>+</ |  
+\>+</ |  
   |   ^  
-  \\<->/  
+  \<->/  
 
-/---\\    
+/---\    
 |   |    
-| v-+-\\  
+| v-+-\  
 | | | |  
-\\-+-/ |  
+\-+-/ |  
   |   |  
   ^---^  
 
-/---\\    
+/---\    
 |   |    
-| /-+-\\  
+| /-+-\  
 | v | |  
-\\-+-/ |  
+\-+-/ |  
   ^   ^  
-  \\---/  
+  \---/  
 
-/---\\    
+/---\    
 |   |    
-| /-+-\\  
+| /-+-\  
 | | | |  
-\\-+-/ ^  
+\-+-/ ^  
   |   |  
-  \\---/  
+  \---/  
+```
 
 After four very expensive crashes, a tick ends with only one cart remaining; its final location is 6,4.
 
