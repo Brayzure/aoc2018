@@ -6,20 +6,24 @@ You map out the tracks (your puzzle input) and see where you can help.
 
 Tracks consist of straight paths (| and -), curves (/ and \), and intersections (+). Curves connect exactly two perpendicular pieces of track; for example, this is a closed loop:
 
+```
 /----\  
 |    |  
 |    |  
 \----/  
+```
 
 Intersections occur when two perpendicular paths cross. At an intersection, a cart is capable of turning left, turning right, or continuing straight. Here are two loops connected by two intersections:
 
+```
 /-----\  
 |     |  
 |  /--+--\  
 |  |  |  |  
 \--+--/  |  
    |     |  
-   \-----/  
+   \-----/ 
+``` 
 
 Several carts are also on the tracks. Carts always face either up (^), down (v), left (<), or right (>). (On your initial map, the track under each cart is a straight path matching the direction the cart is facing.)
 
