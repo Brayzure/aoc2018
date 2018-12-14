@@ -39,7 +39,6 @@ function solve(input) {
         }
         elf1 = (1 + elf1 + elf1Score) % arr.length;
         elf2 = (1 + elf2 + elf2Score) % arr.length;
-        i--;
     }
     return found - target.length;
 }
