@@ -1,11 +1,3 @@
-const fs = require("fs");
-const INPUT_LOCATION = "../input.txt";
-const rawInput = fs.readFileSync(INPUT_LOCATION, "utf8").trim();
-const input = rawInput.split("\n").map(e => e.trim());
-
-const solution = solve(input);
-console.log(solution);
-
 function solve(input) {
     let left = recipes = parseInt(input[0]) - 2;
     let arr = [3, 7];

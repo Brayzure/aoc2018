@@ -1,11 +1,5 @@
-const fs = require("fs");
-const INPUT_LOCATION = "../input.txt";
-const input = fs.readFileSync(INPUT_LOCATION, "utf8").trim();
-
-const solution = solve(input);
-console.log(solution);
-
 function solve(input) {
+    input = input[0];
     const possibilities = [];
     for(let i = 0; i < input.length; i++) {
         if(!possibilities.includes(input[i].toLowerCase())) {

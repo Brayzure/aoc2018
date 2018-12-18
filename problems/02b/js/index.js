@@ -1,9 +1,3 @@
-const fs = require("fs");
-const INPUT_LOCATION = "../input.txt";
-const input = fs.readFileSync(INPUT_LOCATION, "utf8").trim().split("\n").map(e => e.trim());
-
-console.log(solve(input));
-
 function solve(input) {
     let IDs = input;
     let found = false;

@@ -1,10 +1,3 @@
-const fs = require("fs");
-const INPUT_LOCATION = "../input.txt";
-const input = fs.readFileSync(INPUT_LOCATION, "utf8").trim().split("\n").map(e => e.trim());
-
-const solution = solve(input);
-console.log(solution);
-
 function solve(input) {
     const STARTING_FREQUENCY = 0;
     const offsets = parseInput(input);

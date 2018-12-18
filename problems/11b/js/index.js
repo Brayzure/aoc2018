@@ -1,11 +1,3 @@
-const fs = require("fs");
-const INPUT_LOCATION = "../input.txt";
-const rawInput = fs.readFileSync(INPUT_LOCATION, "utf8").trim();
-const input = rawInput.split("\n").map(e => e.trim());
-
-const solution = solve(input);
-console.log(solution);
-
 function solve(input) {
     const maxX = maxY = 300;
     const gridID = parseInt(input[0]);

@@ -1,11 +1,3 @@
-const fs = require("fs");
-const INPUT_LOCATION = "../input.txt";
-const rawInput = fs.readFileSync(INPUT_LOCATION, "utf8").trim();
-const input = rawInput.split("\n").map(e => e.trim());
-
-const solution = solve(input);
-console.log(solution);
-
 function solve(input) {
     const points = [];
     for(let line of input) {
@@ -20,11 +12,21 @@ function solve(input) {
         points.push(point);
     }
     let count = 0;
-    while(adjacencyRatio(points) < 0.7) {
-        movePoints(points);
-        count++;
+    count = timeToMeet(points);
+    return Math.round(count);
+}
+
+function timeToMeet(points) {
+    points.sort((a, b) => {
+        return a.y - b.y;
+    });
+    const testPoint = points[Math.round(points.length / 2)];
+    const times = [];
+    for(const point of points) {
+        if(point === testPoint || point.yv === testPoint.yv) continue;
+        times.push((testPoint.y - point.y) / (point.yv - testPoint.yv));
     }
-    return count;
+    return times.reduce((a, b) => a + b, 0) / times.length;
 }
 
 function adjacencyRatio(points) {

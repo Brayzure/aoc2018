@@ -13,8 +13,10 @@ You can, but please don't. The whole point is coming up with a solution yourself
 It should. The data appears to be unique to each participant (or at least,there's many possible data sets). The site also probably told you your "solution" was the same as someone else's, didn't it?
 
 # Running the Code
-cd to directory, then
 ### Javascript
-`node index.js`
+`node index.js <day+part>`  
+Ex:  
+`node index.js 18b`
 ### C++
+cd to problem directory, then  
 `run.bat`

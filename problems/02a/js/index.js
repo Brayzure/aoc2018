@@ -1,10 +1,3 @@
-const fs = require("fs");
-const INPUT_LOCATION = "../input.txt";
-const input = fs.readFileSync(INPUT_LOCATION, "utf8");
-const IDs = input.trim().split("\n");
-
-console.log(calculateChecksum(IDs));
-
 function calculateChecksum(inputs) {
     let twos = threes = 0;
     for(const input of inputs) {

@@ -1,10 +1,3 @@
-const fs = require("fs");
-const INPUT_LOCATION = "../input.txt";
-const rawInput = fs.readFileSync(INPUT_LOCATION, "utf8");
-const input = rawInput.trim().split("\n").map(e => e.trim());
-
-const solution = solve(input);
-
 function solve(entries) {
     const guards = {};
 

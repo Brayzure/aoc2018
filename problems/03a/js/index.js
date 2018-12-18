@@ -1,16 +1,10 @@
-const fs = require("fs");
-const INPUT_LOCATION = "../input.txt";
-const input = fs.readFileSync(INPUT_LOCATION, "utf8");
-
-console.log(solve(input));
-
 function solve(input) {
-    const claims = input.trim().split("\n").map(e => e.trim());
+    const claims = input;
 
     let claimMap = [];
     for(const claim of claims) {
         const claimObj = parseClaim(claim);
-        addClaim(claimObj);
+        addClaim(claimMap, claimObj);
     }
 
     const overlaps = [];
@@ -21,7 +15,7 @@ function solve(input) {
     return overlaps.reduce((a, b) => a + b, 0);
 }
 
-function addClaim(object) {
+function addClaim(claimMap, object) {
     for(let i = object.leftOffset; i < object.leftOffset + object.width; i++) {
         for(let j = object.topOffset; j < object.topOffset + object.height; j++) {
             if(!claimMap[i]) claimMap[i] = [];
